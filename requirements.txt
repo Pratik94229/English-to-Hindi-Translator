@@ -9,7 +9,7 @@ nltk
 tqdm
 PyYAML
 matplotlib
-tensorflow-text==2.11
+tensorflow-text
 notebook
 boto3
 mypy-boto3-s3
