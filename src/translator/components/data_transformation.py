@@ -10,6 +10,7 @@ class DataTransformation:
         self.tokenizer = AutoTokenizer.from_pretrained(config.tokenizer_name)
         self.source = config.source
         self.save_dir = config.root_dir
+        self.data_dir = config.data_path
         
 
     def preprocess_function(self,examples):

@@ -1,6 +1,5 @@
 import os
-import datasets
-import pandas as pd
+import datasets 
 from src.translator.logging import logger
 from src.translator.utils.common import get_size
 from pathlib import Path
@@ -14,23 +13,16 @@ class DataIngestion:
 
     
     def download_file(self):
-        if not os.path.exists(self.config.local_data_file):
+        if not os.path.exists(self.config.source):
             logger.info("Downloading data")
+            # Load the dataset
             dataset = datasets.load_dataset(f'{self.config.source}')
+            
+            # Save the dataset to the specified folder
+            dataset.save_to_disk(self.config.root_dir)
 
-            # Step 2: Convert the dataset to a Pandas DataFrame
-            df_train = pd.DataFrame(dataset["train"])
-            df_test = pd.DataFrame(dataset["test"])
-            df_validation= pd.DataFrame(dataset["validation"])
-            
-            # Save the DataFrame to a CSV file in the desired folder
-            df_train.to_csv(self.config.root_dir + "/train.csv", index=False)
-            df_validation.to_csv(self.config.root_dir + "/validation.csv", index=False)
-            df_test.to_csv(self.config.root_dir + "/test.csv", index=False)
-            
             logger.info("Dataset ingestion succesful")
         else:
-            logger.info(f"File already exists of size: {get_size(Path(self.config.local_data_file))}")  
+            logger.info(f"File already exists of size: {get_size(Path(self.config.source))}")
 
-        
 

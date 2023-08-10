@@ -12,12 +12,12 @@ class DataTransformationTrainingPipeline:
 
     def main(self):
         try:
-            #data_files = {"validation": "validation.csv", "test": "test.csv"}
-            raw_dataset = load_dataset("cfilt/iitb-english-hindi")
-            #raw_dataset = load_dataset("cfilt/iitb-english-hindi",data_files=data_files)
             config = ConfigurationManager()
             data_transformation_config = config.get_data_transformation_config()
             data_transformation = DataTransformation(config=data_transformation_config)
+            raw_dataset = load_from_disk(data_transformation_config.data_path)
+            logger.info("Data loaded from disk")
+    
             tokenized_datasets = raw_dataset.map(data_transformation.preprocess_function, batched=True)
 
             # Save tokenized datasets to the specified directory
@@ -25,4 +25,5 @@ class DataTransformationTrainingPipeline:
     
         except Exception as e:
             raise e
+      
         

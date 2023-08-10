@@ -5,7 +5,6 @@ from pathlib import Path
 class DataIngestionConfig:
     root_dir: Path
     source: str
-    local_data_file: Path
 
 @dataclass(frozen=True)
 class DataValidationConfig:
@@ -18,5 +17,7 @@ class DataValidationConfig:
 @dataclass(frozen=True)
 class DataTransformationConfig:
     root_dir: Path
+    data_path: Path
     tokenizer_name: Path
     source: str
+    

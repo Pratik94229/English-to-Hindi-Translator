@@ -25,8 +25,7 @@ class ConfigurationManager:
 
         data_ingestion_config = DataIngestionConfig(
             root_dir=config.root_dir,
-            source=config.source,
-            local_data_file=config.local_data_file 
+            source=config.source
         )
 
         return data_ingestion_config
@@ -53,8 +52,10 @@ class ConfigurationManager:
 
         data_transformation_config = DataTransformationConfig(
             root_dir=config.root_dir,
+            data_path=config.data_path,
             tokenizer_name = config.tokenizer_name,
             source=config.source
         )
 
         return data_transformation_config
+    
