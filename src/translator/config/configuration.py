@@ -1,7 +1,7 @@
 from src.translator.constants import *
 from src.translator.utils.common import read_yaml, create_directories
-from src.translator.entity import (DataIngestionConfig,DataValidationConfig,DataTransformationConfig)
-                               #ModelTrainerConfig,ModelEvaluationConfig)
+from src.translator.entity import (DataIngestionConfig,DataValidationConfig,DataTransformationConfig,ModelTrainerConfig)
+                               #,ModelEvaluationConfig)
 
 
 class ConfigurationManager:
@@ -58,4 +58,27 @@ class ConfigurationManager:
         )
 
         return data_transformation_config
+
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        config = self.config.model_trainer
+        params = self.params.TrainingArguments
+
+        create_directories([config.root_dir])
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir=config.root_dir,
+            data_path=config.data_path,
+            model_ckpt = config.model_ckpt,
+            batch_size = params.batch_size,
+            learning_rate = params.learning_rate,
+            weight_decay = params.weight_decay,
+            num_train_epochs = params.num_train_epochs
+        )
+
+        return model_trainer_config
+    
+
+    
+    
+    
     

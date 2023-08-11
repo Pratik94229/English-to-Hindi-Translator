@@ -16,4 +16,9 @@ data_transformation:
   data_path: artifacts/data_ingestion
   tokenizer_name: Helsinki-NLP/opus-mt-en-hi
   source: cfilt/iitb-english-hindi
+
+model_trainer:
+  root_dir: artifacts/model_trainer
+  data_path: artifacts/data_transformation
+  model_ckpt: Helsinki-NLP/opus-mt-en-hi
   
