@@ -1,7 +1,7 @@
 from src.translator.constants import *
 from src.translator.utils.common import read_yaml, create_directories
-from src.translator.entity import (DataIngestionConfig,DataValidationConfig,DataTransformationConfig,ModelTrainerConfig)
-                               #,ModelEvaluationConfig)
+from src.translator.entity import (DataIngestionConfig,DataValidationConfig,DataTransformationConfig,ModelTrainerConfig,ModelPredictionConfig)
+                               
 
 
 class ConfigurationManager:
@@ -76,6 +76,18 @@ class ConfigurationManager:
         )
 
         return model_trainer_config
+    
+    def get_model_prediction_config(self) -> ModelPredictionConfig:
+        config = self.config.model_predictor
+
+
+        get_model_prediction_config = ModelPredictionConfig(
+            model_path = config.model_path,
+            model_ckpt=config.model_ckpt
+           
+        )
+
+        return get_model_prediction_config
     
 
     

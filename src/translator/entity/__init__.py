@@ -30,4 +30,10 @@ class ModelTrainerConfig:
     learning_rate: float
     weight_decay: float
     num_train_epochs: int
+
+
+@dataclass(frozen=True)
+class ModelPredictionConfig:
+    model_path: Path
+    model_ckpt: Path
     
