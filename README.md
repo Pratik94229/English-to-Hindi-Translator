@@ -69,12 +69,16 @@ conda activate venv/
 ```
 pip install -r requirements.txt
 ```
-4. Run the application:
+4. Run the pipelines:
+```
+python main.py
+```
+5. Run the application:
 ```
 python app.py
 ```
 
-5. Access the application:
+6. Access the application:
 Open your web browser and go to `http://localhost:8080` to access the translator service.
 
 ## AWS-CICD-Deployment-with-Github-Actions
